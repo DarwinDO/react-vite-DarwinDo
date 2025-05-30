@@ -5,6 +5,10 @@ import TodoNew from "./component/todo/TodoNew";
 import reactLogo from "./assets/react.svg";
 const App = () => {
 
+  const addNewTodo = (name) => {
+    alert(`Hello ${name}`)
+  }
+
   const name = "Darwin";
   const age = 21;
   const data = {
@@ -16,7 +20,9 @@ const App = () => {
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
-      <TodoNew />
+      <TodoNew
+        addNewTodo={addNewTodo}
+      />
       <TodoData
         name={name}
         age={age}

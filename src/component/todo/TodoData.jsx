@@ -15,7 +15,7 @@ const TodoData = (props) => {
 
     return (
         <div className="todo-data">
-            <div>My name is {name}, {age}, {JSON.stringify(data)}</div>
+            <div>My name is {name}, {age}</div>
             <div>Learning React</div>
             <div>Watching Youtube</div>
         </div>
