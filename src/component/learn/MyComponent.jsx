@@ -6,7 +6,7 @@ const MyComponent = () => {
     return (
 
         <>
-            <div>DarwinDo has tested First Component</div>
+            <div style={{ borderRadius: "10px" }}>DarwinDo has tested First Component</div>
             <div className="child"> Test JSX and Fragment</div>
         </>
 
