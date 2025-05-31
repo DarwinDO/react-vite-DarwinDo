@@ -6,8 +6,9 @@ const TodoNew = (props) => {
 
     const [valueInput, setValueInput] = useState("Darwin");
 
+
     const handleClick = () => {
-        alert("click me");
+        addNewTodo(valueInput);
     }
 
     const handleOnChange = (name) => {
