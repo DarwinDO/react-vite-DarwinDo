@@ -8,7 +8,7 @@ const App = () => {
 
   const addNewTodo = (name) => {
     const newTodo = {
-      id: randomIntFromInterval(4, 1000), // random id from 4 to 1000
+      id: randomIntFromInterval(1, 1000), // random id from 4 to 1000
       name: name
     }
 
@@ -20,13 +20,13 @@ const App = () => {
   }
 
 
-  const name = "Darwin";
-  const age = 21;
-  const data = {
-    name: "Darwin",
-    age: 21,
-    address: "Binhthuan, Vietnam"
-  }
+  // const name = "Darwin";
+  // const age = 21;
+  // const data = {
+  //   name: "Darwin",
+  //   age: 21,
+  //   address: "Binhthuan, Vietnam"
+  // }
 
   const [todoList, setTodoList] = useState([
     // { id: 1, name: "Learn React" },
