@@ -29,9 +29,9 @@ const App = () => {
   }
 
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Learn React" },
-    { id: 2, name: "Learn NodeJS" },
-    { id: 3, name: "Learn TS" },
+    // { id: 1, name: "Learn React" },
+    // { id: 2, name: "Learn NodeJS" },
+    // { id: 3, name: "Learn TS" },
   ])
 
   return (
@@ -41,9 +41,9 @@ const App = () => {
         addNewTodo={addNewTodo}
       />
       <TodoData
-        name={name}
-        age={age}
-        data={data}
+        // name={name}
+        // age={age}
+        // data={data}
         todoList={todoList}
       />
       <div className="todo-image">
