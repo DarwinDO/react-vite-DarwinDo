@@ -8,10 +8,15 @@ const TodoData = (props) => {
         data:{}
     }
     */
-    const { todoList } = props;
+    const { todoList, deleteTodo } = props;
     //const name = props.name;
     //const age = props.age; 
     //const data = props.data;
+
+    const handleDelete = (id) => {
+        console.log("handleDelete", id);
+        deleteTodo(id);
+    }
     console.log("TodoData render", props);
     return (
         <div className="todo-data">
@@ -19,7 +24,7 @@ const TodoData = (props) => {
                 return (
                     <div className="todo-item" key={item.id}>
                         <div>{item.name}</div>
-                        <button>Delete</button>
+                        <button onClick={() => handleDelete(item.id)} >Delete</button>
                     </div>
                 )
             })}
