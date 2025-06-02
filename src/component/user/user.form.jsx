@@ -20,6 +20,11 @@ const UserForm = () => {
                 message: "Create User",
                 description: "User created successfully"
             })
+        } else {
+            notification.error({
+                message: "Create User",
+                description: JSON.stringify(res.message)
+            })
         }
         // console.log("check res ", res.data);
     }
