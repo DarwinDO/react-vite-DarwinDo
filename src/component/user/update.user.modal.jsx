@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { createUserAPI, updateUserAPI } from "../../service/api.service";
+import { updateUserAPI } from "../../service/api.service";
 import { Input, notification, Modal } from "antd";
-import { NavLink } from "react-router-dom";
 
 
 
