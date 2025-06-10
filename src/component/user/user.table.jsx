@@ -1,8 +1,9 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Space, Table, Tag } from 'antd';
+import { Button, message, notification, Popconfirm, Space, Table } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react';
 import ViewUserDetails from './view.user.details';
+import { deleteUserAPI } from '../../service/api.service';
 
 
 const UserTable = (props) => {
@@ -15,6 +16,25 @@ const UserTable = (props) => {
     const [isDataOpen, setIsDataOpen] = useState(false);
     const [dataView, setDataView] = useState(null);
 
+    const confirm = async (id) => {
+        const res = await deleteUserAPI(id);
+        if (res.data) {
+            notification.success({
+                message: 'Delete User',
+                description: 'User deleted successfully'
+            });
+            await loadUser(); // Reload user data after deletion
+        } else {
+            notification.error({
+                message: 'Delete User',
+                description: JSON.stringify(res.message)
+            });
+        }
+    };
+    const cancel = e => {
+        console.log(e);
+        // message.error('Click on No');
+    };
 
     const columns = [
         {
@@ -51,7 +71,19 @@ const UserTable = (props) => {
 
                             }} />
                     </a>
-                    <a href="#" style={{ color: "red" }}><DeleteOutlined /></a>
+                    <Popconfirm
+                        title="Delete user"
+                        description="Are you sure to delete this user?"
+                        onConfirm={() => confirm(record._id)}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                        placement='left'
+                    >
+                        {/* <Button danger><DeleteOutlined /></Button> */}
+                        <DeleteOutlined style={{ cursor: 'pointer', color: 'red' }} />
+                    </Popconfirm>
+
                 </Space>
             ),
         },

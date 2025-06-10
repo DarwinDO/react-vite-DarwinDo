@@ -23,9 +23,19 @@ const updateUserAPI = (_id, fullName, phone) => {
 
 }
 
+const deleteUserAPI = (_id) => {
+    // Note: In a DELETE request, the data is usually sent in the body, but some APIs may require it in the URL.
+    // Here, we are sending the _id in the body as per your original code.
+    // If your API requires the _id in the URL, you can modify the URL accordingly.
+    // For example: const URL_BACKEND = `/api/v1/user/${_id}`;
+    const URL_BACKEND = `/api/v1/user/${_id}`
+    return axios.delete(URL_BACKEND)
+
+}
+
 const fetchAllUserAPI = () => {
     const URL_BACKEND = "/api/v1/user";
     return axios.get(URL_BACKEND)
 }
 
-export { createUserAPI, updateUserAPI, fetchAllUserAPI };
+export { createUserAPI, updateUserAPI, deleteUserAPI, fetchAllUserAPI };
