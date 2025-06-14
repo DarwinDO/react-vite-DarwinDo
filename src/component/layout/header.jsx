@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import { HomeOutlined, UserOutlined, BookOutlined, SettingOutlined } from '@ant-design/icons';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../auth.context";
 
 const Header = () => {
 
@@ -40,13 +41,20 @@ const Header = () => {
     ];
 
     const [current, setCurrent] = useState('');
+
     const onClick = e => {
         console.log('click ', e);
         setCurrent(e.key);
     }
+
+    const { user } = useContext(AuthContext)
+    console.log("check data", user)
+
     return (
         <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
     )
 }
 
 export default Header;
+
+
