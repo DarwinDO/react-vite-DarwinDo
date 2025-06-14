@@ -130,8 +130,8 @@ const RegisterPage = () => {
                 <Col xs={24} sm={12} md={6}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Button type="primary"
-                            // htmlType="submit" //type:'Submit': C1
-                            onClick={() => { form.submit() }} //type: 'Submit': C2
+                            htmlType="submit" //type:'Submit': C1
+                        // onClick={() => { form.submit() }} //type: 'Submit': C2
                         >
                             Register
                         </Button>

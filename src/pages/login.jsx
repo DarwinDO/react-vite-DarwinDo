@@ -78,6 +78,9 @@ const LoginPage = () => {
                             ]}
                         >
                             <Input.Password />
+                            {/* nếu đã có htmlType="submit" ở <Button> thì không cần onPressEnter={() => form.submit()}.
+                            Vì htmlType="submit" đã handle vụ submit form khi nhấn enter rồi. Nên không cần onPressEnter={() => form.submit()} nữa.
+                            Và sẽ bị bug nhảy 2 lần message login successfully*/}
                         </Form.Item>
 
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
