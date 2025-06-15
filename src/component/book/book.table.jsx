@@ -1,0 +1,129 @@
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Popconfirm, Space, Table } from "antd";
+
+
+const BookTable = (props) => {
+    const { loadBook, dataBook, current, pageSize, total, setCurrent, setPageSize } = props;
+
+    const cancel = e => {
+        console.log(e);
+        // message.error('Click on No');
+    };
+
+    const columns = [
+        {
+            title: 'No',
+            render: (_, record, index) => {
+                return (
+                    <>{(current - 1) * pageSize + (index + 1)}</>
+                )
+            }
+        },
+        {
+            title: 'ID',
+            dataIndex: '_id',
+            render: (_, record) => (
+                <Space size="middle">
+                    <a href='#'
+                        onClick={() => {
+                            // setIsDataOpen(true)
+                            // setDataView(record);
+                        }}>{record._id}</a>
+                </Space>
+            ),
+        },
+        {
+            title: 'Title',
+            dataIndex: 'mainText',
+        },
+        {
+            title: 'Price',
+            dataIndex: 'price',
+            render: (price) => {
+                // Sử dụng Intl.NumberFormat để định dạng số thành tiền tệ
+                // 'vi-VN' là locale cho Việt Nam
+                // style: 'currency' để hiển thị dưới dạng tiền tệ
+                // currency: 'VND' để chỉ định đơn vị tiền tệ là Việt Nam Đồng
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(price);
+            }
+        },
+
+        {
+            title: 'Quantity',
+            dataIndex: 'quantity',
+        },
+
+        {
+            title: 'Author',
+            dataIndex: 'author',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="large">
+                    <a href="#" style={{ color: 'black' }}>
+                        <EditOutlined
+                            onClick={() => {
+                                // setIsUpdateModalOpen(true)
+                                // setDataUpdate(record);
+                            }} />
+                    </a>
+                    <Popconfirm
+                        title="Delete book"
+                        description="Are you sure to delete this book?"
+                        onConfirm={() => confirm(record._id)}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                        placement='left'
+                    >
+                        {/* <Button danger><DeleteOutlined /></Button> */}
+                        <DeleteOutlined style={{ cursor: 'pointer', color: 'red' }} />
+                    </Popconfirm>
+
+                </Space>
+            ),
+        },
+    ];
+
+    const onChange = (pagination, filters, sorter, extra) => {
+
+        console.log("check ", { pagination, filters, sorter, extra })
+
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +current) {
+                setCurrent(+pagination.current)
+            }
+        }
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize)
+            }
+        }
+    };
+    return (
+        <>
+            <Table
+                columns={columns}
+                dataSource={dataBook}
+                rowKey={"_id"}
+                pagination={
+                    {
+                        current: current,
+                        pageSize: pageSize,
+                        showSizeChanger: true,
+                        total: total,
+                        showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} on {total} rows</div>) }
+                    }}
+                onChange={onChange}
+
+            />
+        </>
+    )
+}
+
+export default BookTable;
