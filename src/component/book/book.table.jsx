@@ -1,9 +1,13 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Popconfirm, Space, Table } from "antd";
+import { useState } from "react";
+import ViewBookDetails from "./view.book.details";
 
 
 const BookTable = (props) => {
     const { loadBook, dataBook, current, pageSize, total, setCurrent, setPageSize } = props;
+    const [isDataBookOpen, setIsDataBookOpen] = useState(false);
+    const [dataBookDetails, setDataBookDetails] = useState(null);
 
     const cancel = e => {
         console.log(e);
@@ -26,8 +30,8 @@ const BookTable = (props) => {
                 <Space size="middle">
                     <a href='#'
                         onClick={() => {
-                            // setIsDataOpen(true)
-                            // setDataView(record);
+                            setIsDataBookOpen(true)
+                            setDataBookDetails(record);
                         }}>{record._id}</a>
                 </Space>
             ),
@@ -121,6 +125,12 @@ const BookTable = (props) => {
                     }}
                 onChange={onChange}
 
+            />
+            <ViewBookDetails
+                isDataBookOpen={isDataBookOpen}
+                setIsDataBookOpen={setIsDataBookOpen}
+                dataBookDetails={dataBookDetails}
+                setDataBookDetails={setDataBookDetails}
             />
         </>
     )
