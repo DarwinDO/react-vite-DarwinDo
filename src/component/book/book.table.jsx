@@ -1,13 +1,16 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Popconfirm, Space, Table } from "antd";
+import { Button, Popconfirm, Space, Table } from "antd";
 import { useState } from "react";
 import ViewBookDetails from "./view.book.details";
+import BookForm from "./book.form";
 
 
 const BookTable = (props) => {
     const { loadBook, dataBook, current, pageSize, total, setCurrent, setPageSize } = props;
     const [isDataBookOpen, setIsDataBookOpen] = useState(false);
     const [dataBookDetails, setDataBookDetails] = useState(null);
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const cancel = e => {
         console.log(e);
@@ -111,6 +114,14 @@ const BookTable = (props) => {
     };
     return (
         <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', marginTop: '10px' }}>
+                <h3>Table Book</h3>
+                <Button
+                    type="primary"
+                    onClick={() => setIsModalOpen(true)}
+                >Create Book
+                </Button>
+            </div>
             <Table
                 columns={columns}
                 dataSource={dataBook}
@@ -131,6 +142,11 @@ const BookTable = (props) => {
                 setIsDataBookOpen={setIsDataBookOpen}
                 dataBookDetails={dataBookDetails}
                 setDataBookDetails={setDataBookDetails}
+            />
+            <BookForm
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                loadBook={loadBook}
             />
         </>
     )
